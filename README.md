@@ -6,14 +6,21 @@ Docs:
 - How to implement a Nabaztag service: https://github.com/nabaztag2018/pynab/wiki/How-to-create-a-new-service
 - Forum: https://www.tagtagtag.fr/forum/
 
+### prepare Nabaztag
+Enable SSH access on nabaztag: remove the SD card from pi zero, insert it in your computer and create an empty file named "SSH" in the root level.
+Use SSH to connect
+
 ### deployment
-PAHO MQTT is required, run as root:
+PAHO MQTT is required, run as pi:
 ```
+source /opt/pynab/venv/bin/activate
 pip install paho-mqtt
 ```
 
-Add nab2mqttd in the INSTALLED_APPS section of nabweb/settings.py
-
+Copy the code from git:
+cd /opt/pynab/
+git clone https://github.com/nopap/nab2mqttd
+Add nab2mqttd in the INSTALLED_APPS section of /opt/pynab/nabweb/settings.py file
 
 ### MQTT with TLS and self signed cert
 For now if you plan to use TLS the public key must be copied to the server in:
